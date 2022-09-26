@@ -24,3 +24,7 @@ if __name__ == '__main__':
             print(f'{can_id:03X} [{dlc}] {data.hex()}')
     except KeyboardInterrupt:
         s.close()
+import socket,struct
+def set_filter(s, can_id, can_mask):
+ f=struct.pack('=II', can_id, can_mask)
+ s.setsockopt(socket.SOL_CAN_RAW, socket.CAN_RAW_FILTER, f)
